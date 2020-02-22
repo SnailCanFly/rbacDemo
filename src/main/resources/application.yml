@@ -1,0 +1,68 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guat-rbac?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    platform: mysql
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 1
+    minIdle: 3
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,slf4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+mybatis:
+  type-aliases-package: com.yao.common.pojo
+  mapper-locations: classpath:/mybatis-mappers/*
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+
+ #redis
+#  redis: 
+#    host: 119.23.250.3
+#    password: 123456
+#    timeout: PT30M #30分钟
+  #spring-session
+#  session: 
+#    store-type: redis
+#    timeout: PT30M
+
+
+# 分页配置
+
+
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+file:
+  uploadPath: E:\\images\\
+  accessPath: /upload/markPic/
+
+
+# 七牛云配置
+# bucket是创建的存储空间名
+# path对应存储空间的访问域名
+qiniu:
+  accessKey: ajHVkLR3edQ-6LYPpLx8fdzVkz0lyvugy7F2_0Vt
+  secretKey: 1up0taDBO1tVUYfqLs9BMLbdg09yjl9m01llc8g0
+  bucket: guat
+  path:  http://q4hklmhim.bkt.clouddn.com
+#  guat.s3-cn-south-1.qiniucs.com
+
+baseUploadUrl: d://imgupload/
